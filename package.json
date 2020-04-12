@@ -4,6 +4,10 @@
   "description": "Create React component folder and files from explorer context menu",
   "version": "0.0.1",
   "publisher": "gfpacheco",
+  "repository": {
+    "type": "git",
+    "url": "github:gfpacheco/vscode-create-react-component"
+  },
   "engines": {
     "vscode": "^1.44.0"
   },
