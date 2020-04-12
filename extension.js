@@ -1,30 +1,43 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
+const fs = require('fs').promises;
+const path = require('path');
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
+const componentTemplatePath = path.join(__dirname, 'templates', 'component.template');
+const indexTemplatePath = path.join(__dirname, 'templates', 'index.template');
 
-/**
- * @param {vscode.ExtensionContext} context
- */
 function activate(context) {
+  const disposable = vscode.commands.registerCommand(
+    'create-react-component.createComponent',
+    async function (uri) {
+      const componentName = await vscode.window.showInputBox({ prompt: 'Component name' });
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "create-react-component" is now active!');
+      if (!componentName) {
+        return;
+      }
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('create-react-component.helloWorld', function () {
-		// The code you place here will be executed every time your command is executed
+      const parentFolder = uri ? uri.fsPath : vscode.workspace.rootPath;
+      const componentFolder = path.join(parentFolder, componentName);
 
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from create-react-component!');
-	});
+      try {
+        await fs.mkdir(componentFolder);
 
-	context.subscriptions.push(disposable);
+        const [componentTemplate, indexTemplate] = await Promise.all([
+          fs.readFile(componentTemplatePath),
+          fs.readFile(indexTemplatePath),
+        ]);
+
+        const component = componentTemplate.toString().replace(/{componentName}/g, componentName);
+        const index = indexTemplate.toString().replace(/{componentName}/g, componentName);
+
+        await fs.writeFile(path.join(componentFolder, `${componentName}.js`), component);
+        await fs.writeFile(path.join(componentFolder, `index.js`), index);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  );
+
+  context.subscriptions.push(disposable);
 }
 exports.activate = activate;
 
@@ -32,6 +45,6 @@ exports.activate = activate;
 function deactivate() {}
 
 module.exports = {
-	activate,
-	deactivate
-}
+  activate,
+  deactivate,
+};

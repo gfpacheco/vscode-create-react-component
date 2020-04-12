@@ -1,0 +1,2 @@
+export * from './{componentName}';
+export { default } from './{componentName}';

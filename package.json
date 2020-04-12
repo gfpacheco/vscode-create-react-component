@@ -1,40 +1,48 @@
 {
-	"name": "create-react-component",
-	"displayName": "create-react-component",
-	"description": "Create React component folder and files",
-	"version": "0.0.1",
-	"engines": {
-		"vscode": "^1.44.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-        "onCommand:create-react-component.helloWorld"
-	],
-	"main": "./extension.js",
-	"contributes": {
-		"commands": [{
-            "command": "create-react-component.helloWorld",
-            "title": "Hello World"
-
-		}]
-	},
-	"scripts": {
-		"lint": "eslint .",
-		"pretest": "yarn run lint",
-		"test": "node ./test/runTest.js"
-	},
-	"devDependencies": {
-        "@types/vscode": "^1.44.0",
-        "@types/glob": "^7.1.1",
-        "@types/mocha": "^7.0.2",
-        "@types/node": "^13.11.0",
-        "eslint": "^6.8.0",
-        "glob": "^7.1.6",
-        "mocha": "^7.1.1",
-        "typescript": "^3.8.3",
-        "vscode-test": "^1.3.0"
+  "name": "create-react-component",
+  "displayName": "create-react-component",
+  "description": "Create React component folder and files",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.44.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:create-react-component.createComponent"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "create-react-component.createComponent",
+        "title": "Create React component"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "create-react-component.createComponent",
+          "group": "2_workspace"
+        }
+      ]
     }
-
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "yarn run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.44.0",
+    "@types/glob": "^7.1.1",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.11.0",
+    "eslint": "^6.8.0",
+    "glob": "^7.1.6",
+    "mocha": "^7.1.1",
+    "typescript": "^3.8.3",
+    "vscode-test": "^1.3.0"
+  }
 }
