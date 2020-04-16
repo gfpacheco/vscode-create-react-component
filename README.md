@@ -2,9 +2,9 @@
 
 Helper extension to generate react components **my way**.
 
-## Features
+## How it works
 
-Right-click the parent folder and select "Create React component".
+Right-click the parent folder and select "Create React component" (or "Create React Native component").
 
 Input the component name (e.g. "MyComponent").
 
@@ -12,11 +12,18 @@ The extension will create a file sctructure like this inside the parent folder:
 
 ```
 └ MyComponent
-  ├ MyComponent.js
-  └ index.js
+  ├ index.js
+  └ MyComponent.js
 ```
 
 With the following content:
+
+`index.js`
+
+```
+export * from './MyComponent';
+export { default } from './MyComponent';
+```
 
 `MyComponent.js`
 
@@ -31,11 +38,21 @@ function MyComponent({ className, children }) {
 export default MyComponent;
 ```
 
-`index.js`
+Or if you created a React Native component:
 
 ```
-export * from './MyComponent';
-export { default } from './MyComponent';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+
+function MyComponent({ style, children }) {
+  return <View style={[style, styles.root]}>{children}</View>;
+}
+
+const styles = StyleSheet.create({
+  root: {},
+});
+
+export default MyComponent;
 ```
 
 **Enjoy!**
