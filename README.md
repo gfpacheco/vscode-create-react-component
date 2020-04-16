@@ -31,8 +31,8 @@ export { default } from './MyComponent';
 import React from 'react';
 import classNames from 'classnames';
 
-function MyComponent({ className, children }) {
-  return <div className={classNames(className)}>{children}</div>;
+function MyComponent({ className, ...rest }) {
+  return <div className={classNames(className)} {...rest} />;
 }
 
 export default MyComponent;
@@ -44,8 +44,8 @@ Or if you created a React Native component:
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-function MyComponent({ style, children }) {
-  return <View style={[style, styles.root]}>{children}</View>;
+function MyComponent({ style, ...rest }) {
+  return <View style={[style, styles.root]} {...rest} />;
 }
 
 const styles = StyleSheet.create({
