@@ -15,7 +15,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:create-react-component.createComponent"
+    "onCommand:create-react-component.createComponent",
+    "onCommand:create-react-component.createNativeComponent"
   ],
   "main": "./extension.js",
   "contributes": {
@@ -23,12 +24,20 @@
       {
         "command": "create-react-component.createComponent",
         "title": "Create React component"
+      },
+      {
+        "command": "create-react-component.createNativeComponent",
+        "title": "Create React Native component"
       }
     ],
     "menus": {
       "explorer/context": [
         {
           "command": "create-react-component.createComponent",
+          "group": "2_workspace"
+        },
+        {
+          "command": "create-react-component.createNativeComponent",
           "group": "2_workspace"
         }
       ]
