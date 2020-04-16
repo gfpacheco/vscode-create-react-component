@@ -2,7 +2,7 @@
   "name": "create-react-component",
   "displayName": "Create React component",
   "description": "Create React component folder and files from explorer context menu",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "publisher": "gfpacheco",
   "repository": {
     "type": "git",
