@@ -28,8 +28,14 @@ function activate(context) {
       const component = componentTemplate.toString().replace(/{componentName}/g, componentName);
       const index = indexTemplate.toString().replace(/{componentName}/g, componentName);
 
-      await fs.writeFile(path.join(componentFolder, `${componentName}.js`), component);
+      const componentPath = path.join(componentFolder, `${componentName}.js`);
+
+      await fs.writeFile(componentPath, component);
       await fs.writeFile(path.join(componentFolder, `index.js`), index);
+
+      const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(componentPath));
+
+      vscode.window.showTextDocument(doc);
     } catch (error) {
       console.error(error);
     }
