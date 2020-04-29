@@ -45,7 +45,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 function MyComponent({ style, ...rest }) {
-  return <View style={[style, styles.root]} {...rest} />;
+  return <View style={[styles.root, style]} {...rest} />;
 }
 
 const styles = StyleSheet.create({
