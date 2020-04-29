@@ -2,6 +2,12 @@
 
 All notable changes to the "create-react-component" extension will be documented in this file.
 
+## Unreleased
+
+### Changed
+
+- Allow style override on React Native components
+
 ## [0.2.0] - 2020-04-16
 
 ### Added
